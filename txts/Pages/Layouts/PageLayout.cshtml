@@ -1,0 +1,30 @@
+﻿@model txts.Pages.Layouts.PageLayout
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+    <title>Txts / @Model.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Txts">
+    <meta name="description" content="A faithful recreation of the txti.es service in ASP.NET">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://txts.sudokoko.xyz/">
+    <meta property="og:title" content="Txts">
+    <meta property="og:description" content="A faithful recreation of the txti.es service in ASP.NET">
+    <link rel="stylesheet" type="text/css" href="/index.css"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
+</head>
+<body>
+<header>
+    Txts / @Model.Title
+</header>
+<main>
+    <div id="main-container">
+        @RenderBody()
+    </div>
+</main>
+</body>
+</html>
