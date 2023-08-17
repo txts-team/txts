@@ -23,6 +23,67 @@ main {
     max-width: 42rem;
 }
 
-#main-container {
+a {
+    color: #713e71;
+    text-decoration: none;
+}
+
+form input {
+    width: 97%;
+    display: block;
+    padding: 0.5em 1%;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+form textarea {
+    width: 97%;
+    height: 20rem;
+    display: block;
+    padding: 0.5em 1%;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    resize: none;
+}
+
+.main-container {
     margin: 0.5rem;
+}
+
+.edit-container {
+    border: 1px solid #713e71;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.success-message {
+    color: #713e71;
+    border: 1px solid #713e71;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+}
+
+.error-message {
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+}
+
+.tb-margin {
+    margin: 1em 0;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+}
+
+.block {
+    display: block;
 }

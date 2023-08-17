@@ -15,14 +15,14 @@
     <meta property="og:description" content="A faithful recreation of the txti.es service in ASP.NET">
     <link rel="stylesheet" type="text/css" href="/index.css"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
-    Txts / @Model.Title
+    <a href="/">Txts</a> / @Model.Title
 </header>
 <main>
-    <div id="main-container">
+    <div class="main-container">
         @RenderBody()
     </div>
 </main>

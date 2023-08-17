@@ -217,3 +217,8 @@ project.lock.json
 *.feature.cs
 *.feature.xlsx.*
 *.Specs_*.html
+
+# Database files
+**/txts.db
+**/txts.db-shm
+**/txts.db-wal

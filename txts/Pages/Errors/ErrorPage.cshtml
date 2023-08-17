@@ -1,0 +1,35 @@
+﻿@page "/error/{code:int}"
+@model txts.Pages.Errors.ErrorPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = "Error";
+}
+
+<h2>Whoops...</h2>
+
+<div>
+    <p>
+        Something went wrong and the server cannot complete your request.
+    </p>
+
+    <div class="tb-margin">
+        <div>
+            <b>Request ID:</b> @Model.HttpContext.TraceIdentifier
+        </div>
+        <div>
+            <b>Error Code:</b> @Model.ErrorCode
+        </div>
+        @if (Model.ErrorMessage != null)
+        {
+            <div>
+                <b>Error Message:</b> @Model.ErrorMessage
+            </div>
+        }
+    </div>
+
+    <p>
+        This incident has been reported to the catgirl engineers and will be investigated.
+    </p>
+</div>

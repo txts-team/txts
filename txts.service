@@ -1,0 +1,16 @@
+﻿[Unit]
+Description=txts - simple markdown websites
+Documentation=https://github.com/sudokoko/txts
+Wants=network-online.target
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/srv/txts
+ExecStart=/usr/bin/dotnet run -c Release --project txts
+Restart=on-failure
+RestartSec=5s

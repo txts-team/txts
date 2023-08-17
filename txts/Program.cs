@@ -1,13 +1,20 @@
+using Serilog;
+
 namespace txts;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+
+        await StartupTasks.MigrateDatabase();
+
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
+        .UseSerilog()
         .ConfigureWebHostDefaults(webBuilder =>
         {
             webBuilder.UseWebRoot("StaticFiles");

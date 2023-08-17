@@ -1,0 +1,35 @@
+﻿@page "/@{username}/edit"
+@model txts.Pages.EditPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = $"Edit {Model.PageData.Username}";
+}
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="error-message">
+        @Model.ErrorMessage
+    </div>
+}
+
+@if (!Model.PageData.IsBanned)
+{
+    <div class="edit-container">
+        <form method="POST" action="/@@@Model.PageData.Username/edit">
+            @Html.AntiForgeryToken()
+
+            <textarea name="content" id="content" placeholder="Markdown-formatted content...">@Model.CurrentContent</textarea>
+            <input name="secret" id="secret" placeholder="Page secret (required to save changes)"/>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="error-message">
+        This page has been banned by a site administrator.
+    </div>
+}

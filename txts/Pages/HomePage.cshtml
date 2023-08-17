@@ -1,0 +1,43 @@
+﻿@page "/"
+@model txts.Pages.HomePage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = "Home";
+}
+
+<div>
+    <p>
+        Welcome to Txts, a faithful recreation of the txti.es service, written in ASP.NET.
+    </p>
+
+    <p>
+        Txts allows users to create markdown-based simple web pages. Most of the world still does not have internet,
+        but many websites from countries like the United States are big and complicated. This makes it hard for people
+        with slow internet to use these sites. It is even harder for those people to put their own thoughts on the
+        internet. With Txts, anyone can use any device to share their story.
+    </p>
+
+    <p>
+        You can get started by entering in your content below.
+    </p>
+
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="error-message">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <div class="edit-container">
+        <form method="POST" action="/">
+            @Html.AntiForgeryToken()
+
+            <input name="username" id="username" placeholder="Desired username (i.e. koko, janluna, etc.)"/>
+            <textarea name="content" id="content" placeholder="Markdown-formatted content..."></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>

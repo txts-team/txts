@@ -1,0 +1,39 @@
+﻿@page "/@{username}"
+@model txts.Pages.ViewPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = Model.PageData.Username;
+}
+
+
+@switch (Model.Callback)
+{
+    case "create" when Model.Secret != null:
+        <div class="success-message">
+            Your page was created successfully. Your page secret is <b>@Model.Secret</b>, which is required to make
+            future changes to your page. Do not share this!
+        </div>
+        break;
+    case "edit":
+        <div class="success-message">
+            Your page was updated successfully.
+        </div>
+        break;
+}
+
+@if (!Model.PageData.IsBanned)
+{
+    @Html.Raw(Model.PageData.Contents)
+
+    <div class="tb-margin right">
+        <a href="/@@@Model.PageData.Username/edit">(edit)</a>
+    </div>
+}
+else
+{
+    <div class="error-message">
+        This page has been banned by a site administrator.
+    </div>
+}
