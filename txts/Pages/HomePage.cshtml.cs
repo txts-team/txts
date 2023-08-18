@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using txts.Database;
 using txts.Pages.Layouts;
@@ -6,7 +7,7 @@ using txts.Types.Entities;
 
 namespace txts.Pages;
 
-public class HomePage : PageLayout
+public partial class HomePage : PageLayout
 {
     public HomePage(DatabaseContext database) : base(database)
     { }
@@ -20,6 +21,12 @@ public class HomePage : PageLayout
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(content))
         {
             this.ErrorMessage = "Username and content are required.";
+            return this.Page();
+        }
+
+        if (!this.UsernameRegex().IsMatch(username))
+        {
+            this.ErrorMessage = "Usernames can only contain letters, numbers, periods, and underscores.";
             return this.Page();
         }
 
@@ -40,8 +47,8 @@ public class HomePage : PageLayout
 
         PageEntity pageData = new()
         {
-            Username = username,
-            Contents = content,
+            Username = username.Trim(),
+            Contents = content.Trim(),
             Secret = Guid.NewGuid().ToString(),
         };
 
@@ -50,4 +57,7 @@ public class HomePage : PageLayout
 
         return this.Redirect($"/@{pageData.Username}?callback=create&secret={pageData.Secret}");
     }
+
+    [GeneratedRegex("^[A-Za-z0-9_.]+$")]
+    public partial Regex UsernameRegex();
 }
