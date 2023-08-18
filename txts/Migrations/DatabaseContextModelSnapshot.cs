@@ -16,6 +16,26 @@ namespace txts.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
+            modelBuilder.Entity("txts.Types.Entities.BanEntity", b =>
+                {
+                    b.Property<int>("BanId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BanId");
+
+                    b.HasIndex("PageId");
+
+                    b.ToTable("Bans");
+                });
+
             modelBuilder.Entity("txts.Types.Entities.PageEntity", b =>
                 {
                     b.Property<int>("PageId")
@@ -40,6 +60,17 @@ namespace txts.Migrations
                     b.HasKey("PageId");
 
                     b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("txts.Types.Entities.BanEntity", b =>
+                {
+                    b.HasOne("txts.Types.Entities.PageEntity", "Page")
+                        .WithMany()
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Page");
                 });
 #pragma warning restore 612, 618
         }
