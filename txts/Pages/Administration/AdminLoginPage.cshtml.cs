@@ -19,15 +19,7 @@ public class AdminLoginPage : PageLayout
     {
         if (!await this.Database.AdminUsers.AnyAsync()) return this.Redirect("/admin/signup");
 
-        if (callback != null) this.Callback = callback;
-
-        if (this.Request.Cookies["token"] == null) return this.Page();
-
-        WebSessionEntity? session =
-            await this.Database.WebSessions.FirstOrDefaultAsync(s => s.Token == this.Request.Cookies["token"]);
-        if (session == null) return this.Page();
-
-        AdminUserEntity? adminUser = await this.Database.AdminUsers.FirstOrDefaultAsync(u => u.UserId == session.UserId);
+        AdminUserEntity? adminUser = this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Page();
 
         return this.Redirect("/admin");

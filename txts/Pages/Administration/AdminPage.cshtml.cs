@@ -18,13 +18,7 @@ public class AdminPage : PageLayout
 
     public async Task<IActionResult> OnGet([FromQuery] string? callback, [FromQuery] string action, [FromQuery] int id)
     {
-        if (this.Request.Cookies["token"] == null) return this.Redirect("/admin/login");
-
-        WebSessionEntity? session =
-            await this.Database.WebSessions.FirstOrDefaultAsync(s => s.Token == this.Request.Cookies["token"]);
-        if (session == null) return this.Redirect("/admin/login");
-
-        AdminUserEntity? adminUser = await this.Database.AdminUsers.FirstOrDefaultAsync(u => u.UserId == session.UserId);
+        AdminUserEntity? adminUser = this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Redirect("/admin/login");
 
         this.Pages = await this.Database.Pages.ToListAsync();
