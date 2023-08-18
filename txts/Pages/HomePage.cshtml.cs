@@ -30,14 +30,13 @@ public partial class HomePage : PageLayout
             return this.Page();
         }
 
-        if (username.Length > 32)
+        if (username.Length > 16)
         {
-            this.ErrorMessage = "Usernames must be 32 characters or less.";
+            this.ErrorMessage = "Usernames must be 16 characters or less.";
             return this.Page();
         }
 
-        List<PageEntity> existingPages =
-            await this.Database.Pages.Where(page => page.Username == username).ToListAsync();
+        List<PageEntity> existingPages = await this.Database.Pages.Where(page => page.Username == username).ToListAsync();
 
         if (existingPages.Count > 0)
         {

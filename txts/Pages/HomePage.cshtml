@@ -30,7 +30,7 @@
         </div>
     }
 
-    <div class="edit-container">
+    <div class="secondary-container">
         <form method="POST" action="/">
             @Html.AntiForgeryToken()
 
@@ -39,5 +39,9 @@
 
             <button type="submit">Submit</button>
         </form>
+    </div>
+
+    <div class="tb-margin right">
+        <a href="/admin">(site administration)</a>
     </div>
 </div>

@@ -1,0 +1,99 @@
+﻿@page "/admin"
+@using txts.Types.Entities
+@model txts.Pages.Administration.AdminPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = "Site Administration";
+}
+
+<div>
+    @switch (Model.Callback)
+    {
+        case "ban":
+            <div class="success-message">
+                Page banned successfully.
+            </div>
+            break;
+        case "unban":
+            <div class="success-message">
+                Page unbanned successfully.
+            </div>
+            break;
+    }
+
+    <div class="secondary-container">
+        @if (Model.Pages.Count > 0)
+        {
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Secret</th>
+                    <th>Banned</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach (PageEntity pageEntity in Model.Pages)
+                {
+                    <tr>
+                        <td>@pageEntity.PageId</td>
+                        <td>
+                            <a href="/@@@pageEntity.Username">@pageEntity.Username</a>
+                        </td>
+                        <td>
+                            <code>@pageEntity.Secret</code>
+                        </td>
+                        <td>@pageEntity.IsBanned</td>
+                        @switch (pageEntity.IsBanned)
+                        {
+                            case false:
+                                <td>
+                                    <a href="/admin?action=ban&id=@pageEntity.PageId">ban</a>
+                                </td>
+                                break;
+                            case true:
+                                <td>
+                                    <a href="/admin?action=unban&id=@pageEntity.PageId">unban</a>
+                                </td>
+                                break;
+                        }
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <span>There are no pages.</span>
+        }
+    </div>
+
+    <div class="secondary-container">
+        @if (Model.Bans.Count > 0)
+        {
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Page</th>
+                    <th>Reason</th>
+                </tr>
+                @foreach (BanEntity banEntity in Model.Bans)
+                {
+                    <tr>
+                        <td>@banEntity.BanId</td>
+                        <td>@banEntity.PageId</td>
+                        <td>@banEntity.Reason</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <span>There are no bans.</span>
+        }
+    </div>
+
+    <div class="secondary-container">
+        <a href="/admin?action=cleanSessions&id=0">Clean Up Sessions</a>
+    </div>
+</div>

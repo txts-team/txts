@@ -9,4 +9,7 @@ public class DatabaseContext : DbContext
     { }
 
     public DbSet<PageEntity> Pages { get; set; } = null!;
+    public DbSet<BanEntity> Bans { get; set; } = null!;
+    public DbSet<AdminUserEntity> AdminUsers { get; set; } = null!;
+    public DbSet<WebSessionEntity> WebSessions { get; set; } = null!;
 }
