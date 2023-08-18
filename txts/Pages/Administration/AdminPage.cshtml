@@ -42,9 +42,11 @@
                             <a href="/@@@pageEntity.Username">@pageEntity.Username</a>
                         </td>
                         <td>
-                            <code>@pageEntity.Secret</code>
+                            <small>@pageEntity.Secret</small>
                         </td>
-                        <td>@pageEntity.IsBanned</td>
+                        <td>
+                            @pageEntity.IsBanned
+                        </td>
                         @switch (pageEntity.IsBanned)
                         {
                             case false:
