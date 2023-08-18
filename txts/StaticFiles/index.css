@@ -1,31 +1,49 @@
-﻿html, body {
-    width: 100%;
-    height: 100%;
+﻿:root {
+    --primary-color: #713e71;
+    --error-color: #ff0000;
+    --background-color: #ffd6f3;
+    --font: "Itim", "Helvetica Neue", sans-serif;
+    --font-size-normal: 1rem;
+    --font-size-header: 2rem;
+    --padding: 0.5rem;
+    --button-padding: 0.3rem 0.5rem;
+    --margin: 0.5rem;
+    --border-radius: 0.5rem;
 }
 
-body {
-    font-size: 1rem;
-    font-family: "Itim", "Helvetica Neue", sans-serif;
-    margin: 0;
-    background-color: #ffd6f3;
+* {
+    font-family: var(--font);
+}
+
+html {
+    font-size: var(--font-size-normal);
+    background-color: var(--background-color);
 }
 
 header {
-    font-size: 2rem;
+    font-size: var(--font-size-header);
     text-align: center;
-    margin: 0.5rem;
-    width: 100%;
+    margin: var(--margin);
 }
 
 main {
     margin: auto;
-    width: 100%;
     max-width: 42rem;
 }
 
 a {
-    color: #713e71;
+    color: var(--primary-color);
     text-decoration: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--button-padding);
+    font-size: var(--font-size-normal);
+    cursor: pointer;
 }
 
 form input {
@@ -40,9 +58,9 @@ form textarea {
     width: 97%;
     height: 20rem;
     display: block;
-    padding: 0.5em 1%;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    padding: var(--padding) 1%;
+    margin-bottom: var(--margin);
+    font-size: var(--font-size-normal);
     resize: none;
 }
 
@@ -51,37 +69,41 @@ th, td {
     padding: 0 0.3rem;
 }
 
-.main-container {
-    margin: 0.5rem;
+.primary-container {
+    margin: var(--margin);
 }
 
 .secondary-container {
-    border: 1px solid #713e71;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    margin: var(--margin) 0;
 }
 
 .success-message {
-    color: #713e71;
-    border: 1px solid #713e71;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    margin: var(--margin) 0;
     font-size: 0.8rem;
 }
 
 .error-message {
-    color: #ff0000;
-    border: 1px solid #ff0000;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    margin: var(--margin) 0;
     font-size: 0.8rem;
 }
 
 .tb-padding {
-    padding: 0.5rem 0;
+    padding: var(--padding) 0;
+}
+
+.lr-padding {
+    padding: 0 var(--padding);
 }
 
 .right {
