@@ -36,8 +36,7 @@ public partial class HomePage : PageLayout
             return this.Page();
         }
 
-        List<PageEntity> existingPages =
-            await this.Database.Pages.Where(page => page.Username == username).ToListAsync();
+        List<PageEntity> existingPages = await this.Database.Pages.Where(page => page.Username == username).ToListAsync();
 
         if (existingPages.Count > 0)
         {

@@ -1,0 +1,26 @@
+﻿@page "/admin/signup"
+@model txts.Pages.Administration.AdminSignupPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = "Admin Signup";
+}
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="error-message">
+        @Model.ErrorMessage
+    </div>
+}
+
+<div class="secondary-container">
+    <form method="POST" action="/admin/signup">
+        @Html.AntiForgeryToken()
+
+        <input type="text" id="username" name="username" placeholder="Username"/>
+        <input type="password" id="password" name="password" placeholder="Password"/>
+
+        <button type="submit">Create Account</button>
+    </form>
+</div>

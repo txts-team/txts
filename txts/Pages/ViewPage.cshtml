@@ -7,7 +7,6 @@
     Model.Title = Model.PageData.Username;
 }
 
-
 @switch (Model.Callback)
 {
     case "create" when Model.Secret != null:
@@ -35,5 +34,11 @@ else
 {
     <div class="error-message">
         This page has been banned by a site administrator.
+        @if (Model.BanData != null)
+        {
+            <span style="font-style: italic;">
+                (@Model.BanData.Reason)
+            </span>
+        }
     </div>
 }

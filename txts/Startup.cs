@@ -32,8 +32,8 @@ public class Startup : IWebHostStartup
         {
             options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
             {
-                return RateLimitPartition.GetFixedWindowLimiter(partitionKey: httpContext.Request.Headers.Host.ToString(),
-                    _ => new FixedWindowRateLimiterOptions
+                return RateLimitPartition.GetFixedWindowLimiter(httpContext.Request.Headers.Host.ToString(), _ =>
+                    new FixedWindowRateLimiterOptions
                     {
                         PermitLimit = 20,
                         AutoReplenishment = true,

@@ -16,7 +16,7 @@
 
 @if (!Model.PageData.IsBanned)
 {
-    <div class="edit-container">
+    <div class="secondary-container">
         <form method="POST" action="/@@@Model.PageData.Username/edit">
             @Html.AntiForgeryToken()
 

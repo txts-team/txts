@@ -1,0 +1,40 @@
+﻿@page "/admin/login"
+@model txts.Pages.Administration.AdminLoginPage
+
+@{
+    Layout = "Layouts/PageLayout";
+
+    Model.Title = "Admin Login";
+}
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="error-message">
+        @Model.ErrorMessage
+    </div>
+}
+
+@switch (Model.Callback)
+{
+    case "signup":
+        <div class="success-message">
+            Admin account created successfully.
+        </div>
+        break;
+    case "cleanSessions":
+        <div class="success-message">
+            Sessions cleaned up successfully. You will need to log in again.
+        </div>
+        break;
+}
+
+<div class="secondary-container">
+    <form method="POST" action="/admin/login">
+        @Html.AntiForgeryToken()
+
+        <input type="text" id="username" name="username" placeholder="Username"/>
+        <input type="password" id="password" name="password" placeholder="Password"/>
+
+        <button type="submit">Log In</button>
+    </form>
+</div>

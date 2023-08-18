@@ -12,8 +12,9 @@ public class ViewPage : PageLayout
 {
     public ViewPage(DatabaseContext database) : base(database)
     { }
-    
+
     public PageEntity PageData { get; set; } = null!;
+    public BanEntity? BanData { get; set; }
 
     public string? Callback { get; set; }
     public string? Secret { get; set; }
@@ -22,15 +23,18 @@ public class ViewPage : PageLayout
     {
         Markdown markdown = new();
         HtmlSanitizer sanitizer = new();
-        
+
         if (string.IsNullOrWhiteSpace(username)) return this.NotFound();
 
         PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(page => page.Username == username);
-
         if (pageData == null) return this.NotFound();
+
+        BanEntity? banData = await this.Database.Bans.FirstOrDefaultAsync(ban => ban.PageId == pageData.PageId);
 
         this.PageData = pageData;
         this.PageData.Contents = sanitizer.Sanitize(markdown.Transform(pageData.Contents));
+
+        this.BanData = banData;
 
         if (callback != null) this.Callback = callback;
         if (secret != null) this.Secret = secret;
