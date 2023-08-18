@@ -18,7 +18,7 @@ public class AdminPage : PageLayout
 
     public async Task<IActionResult> OnGet([FromQuery] string? callback, [FromQuery] string action, [FromQuery] int id)
     {
-        AdminUserEntity? adminUser = this.Database.UserFromWebRequest(this.Request);
+        AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Redirect("/admin/login");
 
         this.Pages = await this.Database.Pages.ToListAsync();
