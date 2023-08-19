@@ -19,7 +19,7 @@ public class ViewPage : PageLayout
     public string? Callback { get; set; }
     public string? Secret { get; set; }
 
-    public async Task<IActionResult> OnGet([FromRoute] string username, [FromQuery] string? callback, [FromQuery] string? secret)
+    public async Task<IActionResult> OnGet([FromRoute] string username, [FromQuery] string callback, [FromQuery] string secret)
     {
         Markdown markdown = new();
         HtmlSanitizer sanitizer = new();
@@ -36,8 +36,8 @@ public class ViewPage : PageLayout
 
         this.BanData = banData;
 
-        if (callback != null) this.Callback = callback;
-        if (secret != null) this.Secret = secret;
+        this.Callback = callback;
+        this.Secret = secret;
 
         return this.Page();
     }

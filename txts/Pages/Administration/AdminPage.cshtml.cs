@@ -16,29 +16,23 @@ public class AdminPage : PageLayout
 
     public string? Callback { get; set; }
 
-    public async Task<IActionResult> OnGet([FromQuery] string? callback, [FromQuery] string? search, [FromQuery] string action, [FromQuery] int id)
+    public async Task<IActionResult> OnGet([FromQuery] string? search, [FromQuery] string callback, [FromQuery] string action, [FromQuery] int id)
     {
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Redirect("/admin/login");
 
-        if (search != null)
-        {
-            this.Pages = await this.Database.Pages.Where(p => p.Username.Contains(search))
-                .OrderByDescending(p => p.PageId)
-                .Take(20)
-                .ToListAsync();
-            this.Bans = await this.Database.Bans.Where(b => b.Page.Username.Contains(search))
-                .OrderByDescending(p => p.PageId)
-                .Take(20)
-                .ToListAsync();
-        }
-        else
-        {
-            this.Pages = await this.Database.Pages.OrderByDescending(p => p.PageId).Take(20).ToListAsync();
-            this.Bans = await this.Database.Bans.OrderByDescending(p => p.PageId).Take(20).ToListAsync();
-        }
+        if (string.IsNullOrWhiteSpace(search)) search = "";
 
-        if (callback != null) this.Callback = callback;
+        this.Pages = await this.Database.Pages.Where(p => p.Username.Contains(search.ToLower()))
+            .OrderByDescending(p => p.PageId)
+            .Take(20)
+            .ToListAsync();
+        this.Bans = await this.Database.Bans.Where(b => b.Page.Username.Contains(search.ToLower()))
+            .OrderByDescending(p => p.PageId)
+            .Take(20)
+            .ToListAsync();
+
+        this.Callback = callback;
 
         switch (action)
         {

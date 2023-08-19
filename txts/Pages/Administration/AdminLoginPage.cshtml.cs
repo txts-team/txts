@@ -15,11 +15,11 @@ public class AdminLoginPage : PageLayout
 
     public string? Callback { get; set; }
 
-    public async Task<IActionResult> OnGet([FromQuery] string? callback)
+    public async Task<IActionResult> OnGet([FromQuery] string callback)
     {
         if (!await this.Database.AdminUsers.AnyAsync()) return this.Redirect("/admin/signup");
 
-        if (callback != null) this.Callback = callback;
+        this.Callback = callback;
 
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Page();
