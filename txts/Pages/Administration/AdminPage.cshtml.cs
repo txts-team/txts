@@ -16,13 +16,27 @@ public class AdminPage : PageLayout
 
     public string? Callback { get; set; }
 
-    public async Task<IActionResult> OnGet([FromQuery] string? callback, [FromQuery] string action, [FromQuery] int id)
+    public async Task<IActionResult> OnGet([FromQuery] string? callback, [FromQuery] string? search, [FromQuery] string action, [FromQuery] int id)
     {
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Redirect("/admin/login");
 
-        this.Pages = await this.Database.Pages.ToListAsync();
-        this.Bans = await this.Database.Bans.ToListAsync();
+        if (search != null)
+        {
+            this.Pages = await this.Database.Pages.Where(p => p.Username.Contains(search))
+                .OrderByDescending(p => p.PageId)
+                .Take(20)
+                .ToListAsync();
+            this.Bans = await this.Database.Bans.Where(b => b.Page.Username.Contains(search))
+                .OrderByDescending(p => p.PageId)
+                .Take(20)
+                .ToListAsync();
+        }
+        else
+        {
+            this.Pages = await this.Database.Pages.OrderByDescending(p => p.PageId).Take(20).ToListAsync();
+            this.Bans = await this.Database.Bans.OrderByDescending(p => p.PageId).Take(20).ToListAsync();
+        }
 
         if (callback != null) this.Callback = callback;
 
@@ -32,10 +46,7 @@ public class AdminPage : PageLayout
             {
                 PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
 
-                if (page == null)
-                {
-                    return this.NotFound();
-                }
+                if (page == null) return this.NotFound();
 
                 BanEntity ban = new()
                 {
@@ -54,10 +65,7 @@ public class AdminPage : PageLayout
                 PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
                 BanEntity? ban = await this.Database.Bans.FirstOrDefaultAsync(b => b.PageId == id);
 
-                if (page == null || ban == null)
-                {
-                    return this.NotFound();
-                }
+                if (page == null || ban == null) return this.NotFound();
 
                 page.IsBanned = false;
                 this.Database.Bans.Remove(ban);

@@ -24,85 +24,76 @@
     }
 
     <div class="secondary-container">
-        <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
+        <div style="display: flex; flex-direction: row;">
+            <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
+            <form method="GET" action="/admin" style="margin-left: auto;">
+                <input type="text" name="search" placeholder="Search pages and bans" style="margin: 0;"/>
+            </form>
+        </div>
     </div>
 
     <div class="secondary-container">
-        <details>
-            <summary>User Management</summary>
-            @if (Model.Pages.Count > 0)
-            {
-                <table>
+        <span class="tb-padding">There are @Model.Pages.Count page(s).</span>
+        @if (Model.Pages.Count > 0)
+        {
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Secret</th>
+                    <th>Banned</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach (PageEntity pageEntity in Model.Pages)
+                {
                     <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Secret</th>
-                        <th>Banned</th>
-                        <th>Actions</th>
+                        <td>@pageEntity.PageId</td>
+                        <td>
+                            <a href="/@@@pageEntity.Username">@pageEntity.Username</a>
+                        </td>
+                        <td>
+                            <small>@pageEntity.Secret</small>
+                        </td>
+                        <td>
+                            @pageEntity.IsBanned
+                        </td>
+                        @switch (pageEntity.IsBanned)
+                        {
+                            case false:
+                                <td>
+                                    <button onclick="window.location.href = '/admin?action=ban&id=@pageEntity.PageId'">ban</button>
+                                </td>
+                                break;
+                            case true:
+                                <td>
+                                    <button onclick="window.location.href = '/admin?action=unban&id=@pageEntity.PageId'">unban</button>
+                                </td>
+                                break;
+                        }
                     </tr>
-                    @foreach (PageEntity pageEntity in Model.Pages)
-                    {
-                        <tr>
-                            <td>@pageEntity.PageId</td>
-                            <td>
-                                <a href="/@@@pageEntity.Username">@pageEntity.Username</a>
-                            </td>
-                            <td>
-                                <small>@pageEntity.Secret</small>
-                            </td>
-                            <td>
-                                @pageEntity.IsBanned
-                            </td>
-                            @switch (pageEntity.IsBanned)
-                            {
-                                case false:
-                                    <td>
-                                        <button onclick="window.location.href = '/admin?action=ban&id=@pageEntity.PageId'">ban</button>
-                                    </td>
-                                    break;
-                                case true:
-                                    <td>
-                                        <button onclick="window.location.href = '/admin?action=unban&id=@pageEntity.PageId'">unban</button>
-                                    </td>
-                                    break;
-                            }
-                        </tr>
-                    }
-                </table>
-            }
-            else
-            {
-                <span>There are no pages.</span>
-            }
-        </details>
+                }
+            </table>
+        }
     </div>
     <div class="secondary-container">
-        <details>
-            <summary>Bans List</summary>
-            @if (Model.Bans.Count > 0)
-            {
-                <table>
+        <span class="tb-padding">There are @Model.Bans.Count ban(s).</span>
+        @if (Model.Bans.Count > 0)
+        {
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Page</th>
+                    <th>Reason</th>
+                </tr>
+                @foreach (BanEntity banEntity in Model.Bans)
+                {
                     <tr>
-                        <th>ID</th>
-                        <th>Page</th>
-                        <th>Username</th>
-                        <th>Reason</th>
+                        <td>@banEntity.BanId</td>
+                        <td>@banEntity.PageId</td>
+                        <td>@banEntity.Reason</td>
                     </tr>
-                    @foreach (BanEntity banEntity in Model.Bans)
-                    {
-                        <tr>
-                            <td>@banEntity.BanId</td>
-                            <td>@banEntity.PageId</td>
-                            <td>@banEntity.Page.Username</td>
-                            <td>@banEntity.Reason</td>
-                        </tr>
-                    }
-                </table>
-            }
-            else
-            {
-                <span>There are no bans.</span>
-            }
-        </details>
+                }
+            </table>
+        }
     </div>
 </div>

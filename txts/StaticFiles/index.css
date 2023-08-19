@@ -47,14 +47,16 @@ button {
 }
 
 form input {
+    border-radius: var(--border-radius);
     display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    padding: 0.5em 1%;
+    font-size: var(--font-size-normal);
+    margin-bottom: var(--margin);
+    padding: var(--padding) 1%;
     width: 97%;
 }
 
 form textarea {
+    border-radius: var(--border-radius);
     display: block;
     font-size: var(--font-size-normal);
     height: 20rem;
