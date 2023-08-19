@@ -21,11 +21,16 @@
                 Page unbanned successfully.
             </div>
             break;
+        case "error":
+            <div class="error-message">
+                An error occurred while processing your request.
+            </div>
+            break;
     }
 
     <div class="secondary-container">
         <div style="display: flex; flex-direction: row;">
-            <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
+            <button onclick="window.location.href = '/admin/manage?action=cleanSessions&id=0'">Clean Up Sessions</button>
             <form method="GET" action="/admin" style="margin-left: auto;">
                 <input type="text" name="search" placeholder="Search pages and bans" style="margin: 0;"/>
             </form>
@@ -61,12 +66,12 @@
                         {
                             case false:
                                 <td>
-                                    <button onclick="window.location.href = '/admin?action=ban&id=@pageEntity.PageId'">ban</button>
+                                    <button onclick="window.location.href = '/admin/manage?action=ban&id=@pageEntity.PageId'">ban</button>
                                 </td>
                                 break;
                             case true:
                                 <td>
-                                    <button onclick="window.location.href = '/admin?action=unban&id=@pageEntity.PageId'">unban</button>
+                                    <button onclick="window.location.href = '/admin/manage?action=unban&id=@pageEntity.PageId'">unban</button>
                                 </td>
                                 break;
                         }
