@@ -47,6 +47,7 @@ button {
 }
 
 form input {
+    border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
     display: block;
     font-size: var(--font-size-normal);
@@ -56,6 +57,7 @@ form input {
 }
 
 form textarea {
+    border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
     display: block;
     font-size: var(--font-size-normal);
@@ -77,7 +79,7 @@ td {
 }
 
 .secondary-container {
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: var(--border-radius);
     margin: var(--margin) 0;
     padding: var(--padding);
