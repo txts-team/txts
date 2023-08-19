@@ -22,6 +22,10 @@
             </div>
             break;
     }
+    
+    <div class="secondary-container">
+        <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
+    </div>
 
     <div class="secondary-container">
         @if (Model.Pages.Count > 0)
@@ -95,9 +99,5 @@
         {
             <span>There are no bans.</span>
         }
-    </div>
-
-    <div class="secondary-container">
-        <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
     </div>
 </div>
