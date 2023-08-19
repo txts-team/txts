@@ -19,7 +19,7 @@ public class AdminLoginPage : PageLayout
     {
         if (!await this.Database.AdminUsers.AnyAsync()) return this.Redirect("/admin/signup");
 
-        AdminUserEntity? adminUser = this.Database.UserFromWebRequest(this.Request);
+        AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Page();
 
         return this.Redirect("/admin");

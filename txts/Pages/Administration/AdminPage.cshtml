@@ -51,12 +51,12 @@
                         {
                             case false:
                                 <td>
-                                    <a href="/admin?action=ban&id=@pageEntity.PageId">ban</a>
+                                    <button onclick="window.location.href = '/admin?action=ban&id=@pageEntity.PageId'">ban</button>
                                 </td>
                                 break;
                             case true:
                                 <td>
-                                    <a href="/admin?action=unban&id=@pageEntity.PageId">unban</a>
+                                    <button onclick="window.location.href = '/admin?action=unban&id=@pageEntity.PageId'">unban</button>
                                 </td>
                                 break;
                         }
@@ -98,6 +98,6 @@
     </div>
 
     <div class="secondary-container">
-        <a href="/admin?action=cleanSessions&id=0">Clean Up Sessions</a>
+        <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
     </div>
 </div>
