@@ -73,6 +73,28 @@ public class AdminPage : PageLayout
                 await this.Database.SaveChangesAsync();
                 return this.Redirect("/admin?callback=unban");
             }
+            case "verify":
+            {
+                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
+
+                if (page == null) return this.NotFound();
+
+                page.IsVerified = true;
+
+                await this.Database.SaveChangesAsync();
+                return this.Redirect("admin?callback=verify");
+            }
+            case "unverify":
+            {
+                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
+
+                if (page == null) return this.NotFound();
+
+                page.IsVerified = false;
+
+                await this.Database.SaveChangesAsync();
+                return this.Redirect("admin?callback=unverify");
+            }
             case "cleanSessions":
             {
                 this.Database.WebSessions.RemoveRange(this.Database.WebSessions);

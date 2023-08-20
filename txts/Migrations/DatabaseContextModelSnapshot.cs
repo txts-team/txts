@@ -68,6 +68,9 @@ namespace txts.Migrations
                     b.Property<bool>("IsBanned")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Secret")
                         .IsRequired()
                         .HasColumnType("TEXT");
