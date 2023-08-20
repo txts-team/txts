@@ -52,7 +52,7 @@ form input {
     display: block;
     font-size: var(--font-size-normal);
     margin-bottom: var(--margin);
-    padding: var(--padding) 1%;
+    padding: var(--padding) 1.5%;
     width: 97%;
 }
 

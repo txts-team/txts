@@ -16,7 +16,7 @@ public class AdminPage : PageLayout
 
     public string? Callback { get; set; }
 
-    public async Task<IActionResult> OnGet([FromQuery] string? search, [FromQuery] string callback, [FromQuery] string action, [FromQuery] int id)
+    public async Task<IActionResult> OnGet([FromQuery] string? search, [FromQuery] string callback)
     {
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Redirect("/admin/login");
@@ -33,7 +33,12 @@ public class AdminPage : PageLayout
             .ToListAsync();
 
         this.Callback = callback;
+        
+        return this.Page();
+    }
 
+    public async Task<IActionResult> OnPost([FromForm] string action, [FromForm] int id)
+    {
         switch (action)
         {
             case "ban":
@@ -76,6 +81,6 @@ public class AdminPage : PageLayout
             }
         }
 
-        return this.Page();
+        return this.Redirect("/admin?callback=error");
     }
 }

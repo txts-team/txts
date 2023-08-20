@@ -21,11 +21,20 @@
                 Page unbanned successfully.
             </div>
             break;
+        case "error":
+            <div class="error-message">
+                An error occurred while processing your request.
+            </div>
+            break;
     }
 
     <div class="secondary-container">
         <div style="display: flex; flex-direction: row;">
-            <button onclick="window.location.href = '/admin?action=cleanSessions&id=0'">Clean Up Sessions</button>
+            <form action="/admin" method="POST">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="0"/>
+                <button name="action" value="cleanSessions">Clean Up Sessions</button>
+            </form>
             <form method="GET" action="/admin" style="margin-left: auto;">
                 <input type="text" name="search" placeholder="Search pages and bans" style="margin: 0;"/>
             </form>
@@ -57,19 +66,23 @@
                         <td>
                             @pageEntity.IsBanned
                         </td>
-                        @switch (pageEntity.IsBanned)
-                        {
-                            case false:
-                                <td>
-                                    <button onclick="window.location.href = '/admin?action=ban&id=@pageEntity.PageId'">ban</button>
-                                </td>
-                                break;
-                            case true:
-                                <td>
-                                    <button onclick="window.location.href = '/admin?action=unban&id=@pageEntity.PageId'">unban</button>
-                                </td>
-                                break;
-                        }
+                        <form action="/admin" method="POST">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@pageEntity.PageId"/>
+                            @switch (pageEntity.IsBanned)
+                            {
+                                case false:
+                                    <td>
+                                        <button name="action" value="ban">ban</button>
+                                    </td>
+                                    break;
+                                case true:
+                                    <td>
+                                        <button name="action" value="unban">unban</button>
+                                    </td>
+                                    break;
+                            }
+                        </form>
                     </tr>
                 }
             </table>
