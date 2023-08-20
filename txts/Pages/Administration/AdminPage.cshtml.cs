@@ -34,7 +34,7 @@ public class AdminPage : PageLayout
             .ToListAsync();
 
         this.Callback = callback;
-        
+
         return this.Page();
     }
 
