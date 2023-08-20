@@ -14,4 +14,6 @@ public class PageEntity
     public string Contents { get; set; } = "";
 
     public bool IsBanned { get; set; }
+
+    public bool IsVerified { get; set; }
 }

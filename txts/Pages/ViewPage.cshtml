@@ -5,7 +5,18 @@
     Layout = "Layouts/PageLayout";
 
     Model.Title = Model.PageData.Username;
+    Model.DisplayTitle = false;
 }
+
+<header>
+    <a href="/">Txts</a> / @Model.Title
+    @if (Model.PageData.IsVerified)
+    {
+        <span class="verified" role="tooltip" data-microtip-position="bottom" aria-label="This page has been verified by site administrators because the username represents the owner of the page.">
+            <i class="fa-solid fa-circle-check"></i>
+        </span>
+    }
+</header>
 
 @switch (Model.Callback)
 {

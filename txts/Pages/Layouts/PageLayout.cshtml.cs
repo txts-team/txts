@@ -14,5 +14,7 @@ public class PageLayout : PageModel
 
     public string Title { get; set; } = "";
 
+    public bool DisplayTitle { get; set; } = true;
+
     public bool IsMobile { get; set; }
 }

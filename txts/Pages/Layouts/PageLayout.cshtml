@@ -16,11 +16,16 @@
     <link rel="stylesheet" type="text/css" href="/index.css"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/microtip/microtip.css" rel="stylesheet"> @* lmao *@
 </head>
 <body>
-<header>
-    <a href="/">Txts</a> / @Model.Title
-</header>
+@if (Model.DisplayTitle)
+{
+    <header>
+        <a href="/">Txts</a> / @Model.Title
+    </header>
+}
 <main>
     <div class="primary-container">
         @RenderBody()

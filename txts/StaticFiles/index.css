@@ -121,6 +121,14 @@ td {
     display: block;
 }
 
+.verified {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    line-height: inherit;
+    padding-bottom: 0.3rem;
+    vertical-align: middle;
+}
+
 #quick-actions-input {
     margin: 0;
     padding: var(--button-padding);

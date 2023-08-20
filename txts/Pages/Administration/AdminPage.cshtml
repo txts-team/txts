@@ -21,6 +21,16 @@
                 Page unbanned successfully.
             </div>
             break;
+        case "verify":
+            <div class="success-message">
+                Page verified successfully.
+            </div>
+            break;
+        case "unverify":
+            <div class="success-message">
+                Page unverified successfully.
+            </div>
+            break;
         case "error":
             <div class="error-message">
                 An error occurred while processing your request.
@@ -36,7 +46,7 @@
                 <button name="action" value="cleanSessions">Clean Up Sessions</button>
             </form>
             <form method="GET" action="/admin" style="margin-left: auto;">
-                <input type="text" name="search" id="quick-actions-input" placeholder="Search pages and bans" />
+                <input type="text" name="search" id="quick-actions-input" placeholder="Search pages and bans"/>
             </form>
         </div>
     </div>
@@ -50,7 +60,6 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>Secret</th>
-                    <th>Banned</th>
                     <th>Actions</th>
                 </tr>
                 @foreach (PageEntity pageEntity in Model.Pages)
@@ -64,25 +73,37 @@
                             <small>@pageEntity.Secret</small>
                         </td>
                         <td>
-                            @pageEntity.IsBanned
+                            <form action="/admin" method="POST">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@pageEntity.PageId"/>
+                                @switch (pageEntity.IsBanned)
+                                {
+                                    case false:
+                                        <span>
+                                            <button name="action" value="ban">ban</button>
+                                        </span>
+                                        break;
+                                    case true:
+                                        <span>
+                                            <button name="action" value="unban">unban</button>
+                                        </span>
+                                        break;
+                                }
+                                @switch (pageEntity.IsVerified)
+                                {
+                                    case false:
+                                        <span>
+                                            <button name="action" value="verify">verify</button>
+                                        </span>
+                                        break;
+                                    case true:
+                                        <span>
+                                            <button name="action" value="unverify">unverify</button>
+                                        </span>
+                                        break;
+                                }
+                            </form>
                         </td>
-                        <form action="/admin" method="POST">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@pageEntity.PageId"/>
-                            @switch (pageEntity.IsBanned)
-                            {
-                                case false:
-                                    <td>
-                                        <button name="action" value="ban">ban</button>
-                                    </td>
-                                    break;
-                                case true:
-                                    <td>
-                                        <button name="action" value="unban">unban</button>
-                                    </td>
-                                    break;
-                            }
-                        </form>
                     </tr>
                 }
             </table>
