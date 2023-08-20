@@ -124,9 +124,8 @@ td {
 .verified {
     color: var(--primary-color);
     font-size: 1.2rem;
-    line-height: inherit;
-    padding-bottom: 0.3rem;
-    vertical-align: middle;
+    position: relative;
+    bottom: 0.2rem;
 }
 
 #quick-actions-input {
