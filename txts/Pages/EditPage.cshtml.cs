@@ -47,7 +47,7 @@ public class EditPage : PageLayout
 
         if (pageData.Secret != secret)
         {
-            this.ErrorMessage = "Invalid page secret.";
+            this.ErrorMessage = "Invalid page secret. Please contact the site administrators if you have lost your page secret.";
             return this.Page();
         }
 
