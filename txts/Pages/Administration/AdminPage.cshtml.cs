@@ -23,11 +23,12 @@ public class AdminPage : PageLayout
 
         if (string.IsNullOrWhiteSpace(search)) search = "";
 
-        this.Pages = await this.Database.Pages.Where(p => p.Username.Contains(search.ToLower()))
+        this.Pages = await this.Database.Pages.Where(p => p.Username.Contains(search))
             .OrderByDescending(p => p.PageId)
             .Take(20)
             .ToListAsync();
-        this.Bans = await this.Database.Bans.Where(b => b.Page.Username.Contains(search.ToLower()))
+        this.Bans = await this.Database.Bans.Where(b => b.Page.Username.Contains(search))
+            .Include(b => b.Page)
             .OrderByDescending(p => p.PageId)
             .Take(20)
             .ToListAsync();

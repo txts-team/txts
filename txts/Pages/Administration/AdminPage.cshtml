@@ -96,6 +96,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Page</th>
+                    <th>Username</th>
                     <th>Reason</th>
                 </tr>
                 @foreach (BanEntity banEntity in Model.Bans)
@@ -103,6 +104,7 @@
                     <tr>
                         <td>@banEntity.BanId</td>
                         <td>@banEntity.PageId</td>
+                        <td>@banEntity.Page.Username</td>
                         <td>@banEntity.Reason</td>
                     </tr>
                 }
