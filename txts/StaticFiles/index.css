@@ -120,3 +120,9 @@ td {
 .block {
     display: block;
 }
+
+#quick-actions-input {
+    margin: 0;
+    padding: var(--button-padding);
+    width: 90%;
+}
