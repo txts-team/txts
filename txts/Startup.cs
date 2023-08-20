@@ -20,22 +20,14 @@ public class Startup : IWebHostStartup
         application.UseStatusCodePagesWithReExecute("/error/{0}");
 
         application.UseRouting();
-        application.UseStaticFiles();
 
-        application.UseEndpoints(endpoints =>
-        {
-            endpoints.MapRazorPages();
-            endpoints.MapControllers();
-        });
+        application.UseStaticFiles();
+        application.UseEndpoints(endpoints => endpoints.MapRazorPages());
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddRazorPages();
-        services.AddMvc(options =>
-        {
-            options.EnableEndpointRouting = false;
-        });
         services.AddRateLimiter(options =>
         {
             options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
