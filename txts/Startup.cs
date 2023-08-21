@@ -77,7 +77,7 @@ public static class StartupTasks
 
             Log.Error(e, "An exception occurred while creating or migrating database {Database}",
                 database.Database.GetDbConnection().Database);
-            return;
+            Environment.Exit(1);
         }
 
         migrationStopwatch.Stop();
