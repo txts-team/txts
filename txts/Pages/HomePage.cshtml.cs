@@ -30,9 +30,9 @@ public partial class HomePage : PageLayout
             return this.Page();
         }
 
-        if (username.Length > 16)
+        if (username.Length is > 16 or < 3)
         {
-            this.ErrorMessage = "Usernames must be 16 characters or less.";
+            this.ErrorMessage = "Usernames must be between 4 and 16 characters long.";
             return this.Page();
         }
 
