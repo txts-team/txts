@@ -13,6 +13,7 @@ public class PageLayout : PageModel
     }
 
     public string Title { get; set; } = "";
+    public string Description { get; set; } = "A faithful recreation of the txti.es service in ASP.NET";
 
     public bool DisplayTitle { get; set; } = true;
 

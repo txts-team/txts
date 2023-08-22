@@ -5,6 +5,11 @@
     Layout = "Layouts/PageLayout";
 
     Model.Title = Model.PageData.Username;
+
+    Model.Description = Model.PageData.Contents.Length > 250
+        ? Model.PageData.Contents[..250] + "..."
+        : Model.PageData.Contents;
+
     Model.DisplayTitle = false;
 }
 
