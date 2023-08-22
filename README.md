@@ -9,6 +9,10 @@ websites from countries like the United States are big and complicated. This mak
 to use these sites. It is even harder for those people to put their own thoughts on the internet. With Txts, anyone can
 use any device to share their story.
 
+## Need help?
+
+Join our [Discord](https://disord.gg/Y5QfmF9uW3) for support.
+
 ## Building and running
 
 You'll need the .NET 7.0 SDK to build and run Txts.
