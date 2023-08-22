@@ -11,7 +11,7 @@ use any device to share their story.
 
 ## Need help?
 
-Join our [Discord](https://disord.gg/Y5QfmF9uW3) for support.
+Join our [Discord](https://discord.gg/Y5QfmF9uW3) for support.
 
 ## Building and running
 
