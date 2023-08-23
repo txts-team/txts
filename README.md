@@ -15,9 +15,13 @@ Join our [Discord](https://discord.gg/Y5QfmF9uW3) for support.
 
 ## Security
 
-Txts should be considered pre-release software. While we generally try to look out for security issues before pushing code, issues are bound to arise.
+Txts should be considered pre-release software. While we generally try to look out for security issues before pushing
+code, issues are bound to arise.
 
 Simply put, you should use Txts **at your own risk**.
+
+If you encounter a security issue, please report it to us as soon as possible. Instructions on how to do so can be found
+in [SECURITY.md](https://github.com/txts-team/txts/blob/master/SECURITY.md).
 
 ## Building and running
 
