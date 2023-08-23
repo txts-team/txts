@@ -31,6 +31,10 @@ main {
     max-width: 42rem;
 }
 
+img {
+    max-width: 100%;
+}
+
 a {
     color: var(--primary-color);
     text-decoration: none;
