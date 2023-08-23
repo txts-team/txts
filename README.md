@@ -1,4 +1,4 @@
-﻿# Txts
+# Txts
 
 *A faithful recreation of the txti.es service in ASP.NET*
 
@@ -12,6 +12,12 @@ use any device to share their story.
 ## Need help?
 
 Join our [Discord](https://discord.gg/Y5QfmF9uW3) for support.
+
+## Security
+
+Txts should be considered pre-release software. While we generally try to look out for security issues before pushing code, issues are bound to arise.
+
+Simply put, you should use Txts **at your own risk**.
 
 ## Building and running
 
