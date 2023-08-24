@@ -1,4 +1,5 @@
 ﻿@page "/admin/login"
+@using txts.Types.Website
 @model txts.Pages.Administration.AdminLoginPage
 
 @{
@@ -9,9 +10,7 @@
 
 @if (Model.ErrorMessage != null)
 {
-    <div class="error-message">
-        @Model.ErrorMessage
-    </div>
+    @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to log in", Model.ErrorMessage))
 }
 
 @switch (Model.Callback)

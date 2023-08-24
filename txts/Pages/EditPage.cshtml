@@ -1,4 +1,5 @@
 ﻿@page "/@{username}/edit"
+@using txts.Types.Website
 @model txts.Pages.EditPage
 
 @{
@@ -9,9 +10,7 @@
 
 @if (Model.ErrorMessage != null)
 {
-    <div class="error-message">
-        @Model.ErrorMessage
-    </div>
+    @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to edit page", Model.ErrorMessage))
 }
 
 @if (!Model.PageData.IsBanned)
@@ -29,7 +28,8 @@
 }
 else
 {
-    <div class="error-message">
-        This page has been banned by a site administrator.
-    </div>
+    if (Model.PageData.IsBanned)
+    {
+        @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to edit page.", "This page is banned and cannot be edited."))
+    }
 }

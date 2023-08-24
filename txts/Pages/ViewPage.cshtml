@@ -1,4 +1,5 @@
 ﻿@page "/@{username}"
+@using txts.Types.Website
 @model txts.Pages.ViewPage
 
 @{
@@ -17,7 +18,7 @@
     <a href="/">Txts</a> / @Model.Title
     @if (Model.PageData.IsVerified)
     {
-        <span class="verified"
+        <span class="verified-icon"
               role="tooltip"
               data-microtip-position="bottom"
               data-microtip-size="large"
@@ -52,13 +53,8 @@
 }
 else
 {
-    <div class="error-message">
-        This page has been banned by a site administrator.
-        @if (Model.BanData != null)
-        {
-            <span style="font-style: italic;">
-                (@Model.BanData.Reason)
-            </span>
-        }
-    </div>
+    if (Model.BanData != null)
+    {
+        @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("This page has been banned.", Model.BanData.Reason))
+    }
 }

@@ -1,4 +1,5 @@
 ﻿@page "/admin/signup"
+@using txts.Types.Website
 @model txts.Pages.Administration.AdminSignupPage
 
 @{
@@ -9,9 +10,7 @@
 
 @if (Model.ErrorMessage != null)
 {
-    <div class="error-message">
-        @Model.ErrorMessage
-    </div>
+    @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to create account", Model.ErrorMessage))
 }
 
 <div class="secondary-container">
