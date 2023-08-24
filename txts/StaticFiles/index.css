@@ -1,4 +1,8 @@
-﻿:root {
+﻿@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url("https://unpkg.com/microtip/microtip.min.css");
+
+:root {
     --background-color: #ffd6f3;
     --border-radius: 0.5rem;
     --button-padding: 0.3rem 0.5rem;
@@ -107,6 +111,13 @@ td {
     padding: var(--padding);
 }
 
+.verified {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 0.25rem;
+}
+
 .tb-padding {
     padding: var(--padding) 0;
 }
@@ -123,13 +134,6 @@ td {
 
 .block {
     display: block;
-}
-
-.verified {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    position: relative;
-    bottom: 0.2rem;
 }
 
 #quick-actions-input {
