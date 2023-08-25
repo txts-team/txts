@@ -10,16 +10,16 @@
 
 @if (Model.ErrorMessage != null)
 {
-    @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Error("Failed to log in", Model.ErrorMessage))
+    @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("Failed to log in", Model.ErrorMessage))
 }
 
 @switch (Model.Callback)
 {
     case "signup":
-        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Admin account created successfully", "You can now log in with your new account."))
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Admin account created successfully", "You can now log in with your new account."))
         break;
     case "cleanSessions":
-        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Sessions cleaned up successfully", "You will need to log in again."))
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Sessions cleaned up successfully", "You will need to log in again."))
         break;
 }
 

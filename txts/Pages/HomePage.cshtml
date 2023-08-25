@@ -26,7 +26,7 @@
 
     @if (Model.ErrorMessage != null)
     {
-        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Error("Failed to create page", Model.ErrorMessage))
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("Failed to create page", Model.ErrorMessage))
     }
 
     <div class="secondary-container">
