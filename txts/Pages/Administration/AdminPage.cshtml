@@ -13,19 +13,19 @@
     @switch (Model.Callback)
     {
         case "ban":
-            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was banned successfully.", MessageType.Success))
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Administrative action processed", "The page was banned successfully."))
             break;
         case "unban":
-            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was unbanned successfully.", MessageType.Success))
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Administrative action processed", "The page was unbanned successfully."))
             break;
         case "verify":
-            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was verified successfully.", MessageType.Success))
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Administrative action processed", "The page was verified successfully."))
             break;
         case "unverify":
-            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was unverified successfully.", MessageType.Success))
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Success("Administrative action processed", "The page was unverified successfully."))
             break;
         case "error":
-            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Failed to process administrative action", "An error occurred while processing your request.", MessageType.Error))
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Error("Failed to process administrative action", "An error occurred while processing your request."))
             break;
     }
 

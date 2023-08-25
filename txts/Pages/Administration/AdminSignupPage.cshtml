@@ -10,7 +10,7 @@
 
 @if (Model.ErrorMessage != null)
 {
-    @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Failed to create account", Model.ErrorMessage, MessageType.Error))
+    @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.Error("Failed to create account", Model.ErrorMessage))
 }
 
 <div class="secondary-container">
