@@ -1,5 +1,6 @@
 ﻿@page "/admin"
 @using txts.Types.Entities
+@using txts.Types.Website
 @model txts.Pages.Administration.AdminPage
 
 @{
@@ -12,29 +13,19 @@
     @switch (Model.Callback)
     {
         case "ban":
-            <div class="success-message">
-                Page banned successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Administrative action processed", "The page was banned successfully."))
             break;
         case "unban":
-            <div class="success-message">
-                Page unbanned successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Administrative action processed", "The page was unbanned successfully."))
             break;
         case "verify":
-            <div class="success-message">
-                Page verified successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Administrative action processed", "The page was verified successfully."))
             break;
         case "unverify":
-            <div class="success-message">
-                Page unverified successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Administrative action processed", "The page was unverified successfully."))
             break;
         case "error":
-            <div class="error-message">
-                An error occurred while processing your request.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("Failed to process administrative action", "An error occurred while processing your request."))
             break;
     }
 

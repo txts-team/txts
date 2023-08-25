@@ -94,28 +94,43 @@ td {
 }
 
 .success-message {
-    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
     border-radius: var(--border-radius);
-    color: var(--primary-color);
+    color: white;
     font-size: 0.8rem;
     margin: var(--margin) 0;
     padding: var(--padding);
 }
 
 .error-message {
-    border: 1px solid var(--error-color);
+    background-color: var(--error-color);
     border-radius: var(--border-radius);
-    color: var(--error-color);
+    color: white;
     font-size: 0.8rem;
     margin: var(--margin) 0;
     padding: var(--padding);
 }
 
-.verified {
+.success-message h2, .error-message h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.success-message i, .error-message i {
+    margin-right: 0.2rem;
+}
+
+.verified-icon {
     color: var(--primary-color);
     font-size: 1.2rem;
     position: relative;
     bottom: 0.25rem;
+}
+
+.message-icon {
+    color: white;
+    font-size: 1rem;
+    position: relative;
 }
 
 .tb-padding {

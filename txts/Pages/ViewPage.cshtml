@@ -1,4 +1,5 @@
 ﻿@page "/@{username}"
+@using txts.Types.Website
 @model txts.Pages.ViewPage
 
 @{
@@ -17,7 +18,7 @@
     <a href="/">Txts</a> / @Model.Title
     @if (Model.PageData.IsVerified)
     {
-        <span class="verified"
+        <span class="verified-icon"
               role="tooltip"
               data-microtip-position="bottom"
               data-microtip-size="large"
@@ -30,15 +31,10 @@
 @switch (Model.Callback)
 {
     case "create" when Model.Secret != null:
-        <div class="success-message">
-            Your page was created successfully. Your page secret is <b>@Model.Secret</b>, which is required to make
-            future changes to your page. Do not share this!
-        </div>
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Page created successfully", $"Your page secret is {Model.Secret}, which is required to make future changes to your page. Remember to keep it safe (write it down, don't share it)."))
         break;
     case "edit":
-        <div class="success-message">
-            Your page was updated successfully.
-        </div>
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Page edited successfully", "Your page content has been updated to reflect your changes."))
         break;
 }
 
@@ -52,13 +48,8 @@
 }
 else
 {
-    <div class="error-message">
-        This page has been banned by a site administrator.
-        @if (Model.BanData != null)
-        {
-            <span style="font-style: italic;">
-                (@Model.BanData.Reason)
-            </span>
-        }
-    </div>
+    if (Model.BanData != null)
+    {
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("This page has been banned.", Model.BanData.Reason))
+    }
 }
