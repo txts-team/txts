@@ -1,0 +1,34 @@
+﻿@using txts.Types.Website
+@model txts.Types.Website.MessageEntity
+
+@switch (Model.Type)
+{
+    case MessageType.Success:
+        <div class="success-message">
+            <h2>
+                <span class="message-icon">
+                    <i class="bi bi-check-circle-fill"></i>
+                </span>
+                @Model.Title
+            </h2>
+            <span>
+                @Model.Message
+            </span>
+        </div>
+        break;
+    case MessageType.Error:
+        <div class="error-message">
+            <h2>
+                <span class="message-icon">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                </span>
+                @Model.Title
+            </h2>
+            <span>
+                @Model.Message
+            </span>
+        </div>
+        break;
+    default:
+        throw new ArgumentOutOfRangeException();
+}

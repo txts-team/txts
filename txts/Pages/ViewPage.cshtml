@@ -31,15 +31,10 @@
 @switch (Model.Callback)
 {
     case "create" when Model.Secret != null:
-        <div class="success-message">
-            Your page was created successfully. Your page secret is <b>@Model.Secret</b>, which is required to make
-            future changes to your page. Do not share this!
-        </div>
+        @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Page created successfully", $"Your page was created successfully. Your page secret is {Model.Secret}, which is required to make future changes to your page.Do not share this!", MessageType.Success))
         break;
     case "edit":
-        <div class="success-message">
-            Your page was updated successfully.
-        </div>
+        @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Page edited successfully", "Your page content has been updated to reflect your changes.", MessageType.Success))
         break;
 }
 
@@ -55,6 +50,6 @@ else
 {
     if (Model.BanData != null)
     {
-        @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("This page has been banned.", Model.BanData.Reason))
+        @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("This page has been banned.", Model.BanData.Reason, MessageType.Error))
     }
 }

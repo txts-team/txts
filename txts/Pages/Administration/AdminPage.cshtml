@@ -13,27 +13,19 @@
     @switch (Model.Callback)
     {
         case "ban":
-            <div class="success-message">
-                Page banned successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was banned successfully.", MessageType.Success))
             break;
         case "unban":
-            <div class="success-message">
-                Page unbanned successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was unbanned successfully.", MessageType.Success))
             break;
         case "verify":
-            <div class="success-message">
-                Page verified successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was verified successfully.", MessageType.Success))
             break;
         case "unverify":
-            <div class="success-message">
-                Page unverified successfully.
-            </div>
+            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Administrative action processed", "The page was unverified successfully.", MessageType.Success))
             break;
         case "error":
-            @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to process administrative action", "An error occurred while processing your request."))
+            @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Failed to process administrative action", "An error occurred while processing your request.", MessageType.Error))
             break;
     }
 

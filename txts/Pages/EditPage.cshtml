@@ -10,7 +10,7 @@
 
 @if (Model.ErrorMessage != null)
 {
-    @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to edit page", Model.ErrorMessage))
+    @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Failed to edit page", Model.ErrorMessage, MessageType.Error))
 }
 
 @if (!Model.PageData.IsBanned)
@@ -28,5 +28,5 @@
 }
 else
 {
-    @await Html.PartialAsync("Partials/ErrorPartial", new ErrorEntity("Failed to edit page.", "This page is banned and cannot be edited."))
+    @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Failed to edit page.", "This page is banned and cannot be edited.", MessageType.Error))
 }
