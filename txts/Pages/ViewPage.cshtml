@@ -31,7 +31,7 @@
 @switch (Model.Callback)
 {
     case "create" when Model.Secret != null:
-        @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Page created successfully", $"Your page was created successfully. Your page secret is {Model.Secret}, which is required to make future changes to your page.Do not share this!", MessageType.Success))
+        @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Page created successfully", $"Your page secret is {Model.Secret}, which is required to make future changes to your page. Remember to keep it safe (write it down, don't share it).", MessageType.Success))
         break;
     case "edit":
         @await Html.PartialAsync("Partials/MessagePartial", new MessageEntity("Page edited successfully", "Your page content has been updated to reflect your changes.", MessageType.Success))
