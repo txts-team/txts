@@ -1,5 +1,4 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 @import url("https://unpkg.com/microtip/microtip.min.css");
 
 @media (prefers-color-scheme: light) {
@@ -156,9 +155,8 @@ td {
 
 .verified-icon {
     color: var(--primary-color);
-    font-size: 1.2rem;
     position: relative;
-    bottom: 0.25rem;
+    bottom: 0.05rem;
 }
 
 .message-icon {
