@@ -14,6 +14,6 @@ public static partial class RequestExtensions
     public static bool IsReallyOldDevice
         (this HttpRequest request) => ReallyOldDeviceRegex().IsMatch(request.Headers[HeaderNames.UserAgent].ToString());
 
-    [GeneratedRegex("(?i)BlackBerry|IEMobile|Opera Mini|PlayStation 3|PlayStation Vita|Nintendo Wii.*|Nintendo 3DS|WebTV")]
+    [GeneratedRegex("(?i)BlackBerry|IEMobile|Opera Mini|PlayStation 3|PlayStation Vita|Nintendo 3DS|WebTV")]
     private static partial Regex ReallyOldDeviceRegex();
 }
