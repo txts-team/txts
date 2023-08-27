@@ -1,4 +1,5 @@
 ﻿@page "/admin"
+@using txts.Extensions
 @using txts.Types.Entities
 @using txts.Types.Website
 @model txts.Pages.Administration.AdminPage
@@ -7,6 +8,8 @@
     Layout = "Layouts/PageLayout";
 
     Model.Title = "Site Administration";
+
+    Model.IsReallyOldDevice = Model.Request.IsReallyOldDevice();
 }
 
 <div>
@@ -24,6 +27,9 @@
         case "unverify":
             @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Administrative action processed", "The page was unverified successfully."))
             break;
+        case "showInstanceInfo":
+            @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Instance information", $"You are running Txts {Model.ExecAsmName} {Model.VcsBranch}@{Model.VcsCommit} {Model.VcsTimestamp}"))
+            break;
         case "error":
             @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("Failed to process administrative action", "An error occurred while processing your request."))
             break;
@@ -34,7 +40,24 @@
             <form action="/admin" method="POST">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="id" value="0"/>
-                <button name="action" value="cleanSessions">Clean Up Sessions</button>
+                <span role="tooltip" data-microtip-position="bottom" aria-label="Show Instance Info">
+                    <button name="action" value="showInstanceInfo">
+                        <i class="bi bi-info-circle-fill"></i>
+                        @if (Model.IsReallyOldDevice)
+                        {
+                            <span>Show Instance Info</span>
+                        }
+                    </button>
+                </span>
+                <span role="tooltip" data-microtip-position="bottom" aria-label="Clean Up Sessions">
+                    <button name="action" value="cleanSessions">
+                        <i class="bi bi-recycle"></i>
+                        @if (Model.IsReallyOldDevice)
+                        {
+                            <span>Clean Up Sessions</span>
+                        }
+                    </button>
+                </span>
             </form>
             <form method="GET" action="/admin" style="margin-left: auto;">
                 <input type="text" name="search" id="quick-actions-input" placeholder="Search pages and bans"/>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using txts.Database;
 
 namespace txts.Pages.Layouts;
@@ -18,4 +19,9 @@ public class PageLayout : PageModel
     public bool DisplayTitle { get; set; } = true;
 
     public bool IsReallyOldDevice { get; set; }
+
+    public string VcsBranch { get; set; } = ThisAssembly.Git.Branch;
+    public string VcsCommit { get; set; } = ThisAssembly.Git.Commit;
+    public string VcsTimestamp { get; set; } = ThisAssembly.Git.CommitDate;
+    public string ExecAsmName { get; set; } = Assembly.GetExecutingAssembly().GetName().Name ?? "Unknown";
 }

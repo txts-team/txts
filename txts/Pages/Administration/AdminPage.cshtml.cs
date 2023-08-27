@@ -102,6 +102,7 @@ public class AdminPage : PageLayout
 
                 return this.Redirect("/admin/login?callback=cleanSessions");
             }
+            case "showInstanceInfo": return this.Redirect("/admin?callback=showInstanceInfo");
         }
 
         return this.Redirect("/admin?callback=error");

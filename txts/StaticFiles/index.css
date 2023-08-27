@@ -23,7 +23,7 @@
         --primary-color: #713e71;
         --text-color: black;
         --text-color-inverse: white;
-    }    
+    }
 }
 
 @media (prefers-color-scheme: dark) {
