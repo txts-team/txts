@@ -1,4 +1,10 @@
-﻿@model txts.Pages.Layouts.PageLayout
+﻿@using txts.Extensions
+@model txts.Pages.Layouts.PageLayout
+
+@{
+    Model.IsReallyOldDevice = Model.Request.IsReallyOldDevice();
+}
+
 
 <!DOCTYPE html>
 
@@ -14,8 +20,11 @@
     <meta property="og:url" content="https://txts.sudokoko.xyz/">
     <meta property="og:title" content="Txts / @Model.Title">
     <meta property="og:description" content="@Model.Description">
-    <link rel="stylesheet" type="text/css" href="/index.css"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    @if (!Model.IsReallyOldDevice)
+    {
+        <link rel="stylesheet" type="text/css" href="/index.css"/>
+    }
 </head>
 <body>
 @if (Model.DisplayTitle)
@@ -23,6 +32,12 @@
     <header>
         <a href="/">Txts</a> / @Model.Title
     </header>
+}
+@if (Model.IsReallyOldDevice)
+{
+    <span style="border: 1px solid red;">
+        You seem to be using a really old device. As a result, we've disabled the page styling to improve performance.
+    </span>
 }
 <main>
     <div class="primary-container">

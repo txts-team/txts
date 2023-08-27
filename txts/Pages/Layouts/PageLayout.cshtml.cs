@@ -17,5 +17,5 @@ public class PageLayout : PageModel
 
     public bool DisplayTitle { get; set; } = true;
 
-    public bool IsMobile { get; set; }
+    public bool IsReallyOldDevice { get; set; }
 }
