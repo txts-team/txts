@@ -162,9 +162,17 @@ td {
 }
 
 .message-icon {
-    color: var(--text-color-inverse);
+    color: inherit;
     font-size: 1rem;
     position: relative;
+}
+
+.message-icon .success {
+    color: var(--text-color-inverse);
+}
+
+.message-icon .error {
+    color: white;
 }
 
 .tb-padding {
