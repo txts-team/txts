@@ -19,6 +19,7 @@
         --padding: 0.5rem;
         --primary-color: #713e71;
         --text-color: black;
+        --text-color-inverse: white;
     }    
 }
 
@@ -39,6 +40,7 @@
         --padding: 0.5rem;
         --primary-color: #ffd6f3;
         --text-color: white;
+        --text-color-inverse: black;
     }
 }
 
@@ -128,7 +130,7 @@ td {
 .success-message {
     background-color: var(--primary-color);
     border-radius: var(--border-radius);
-    color: white;
+    color: var(--text-color-inverse);
     font-size: 0.8rem;
     margin: var(--margin) 0;
     padding: var(--padding);
