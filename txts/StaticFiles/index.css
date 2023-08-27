@@ -2,21 +2,24 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 @import url("https://unpkg.com/microtip/microtip.min.css");
 
+:root {
+    --border-radius: 0.5rem;
+    --button-padding: 0.3rem 0.5rem;
+    --error-color: #ff0000;
+    --font: "Itim", "Helvetica Neue", sans-serif;
+    --font-size-header: 2rem;
+    --font-size-normal: 1rem;
+    --margin: 0.5rem;
+    --padding: 0.5rem;
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         --background-color: #ffd6f3;
-        --border-radius: 0.5rem;
         --button-background-color: #713e71;
         --button-foreground-color: white;
-        --button-padding: 0.3rem 0.5rem;
-        --error-color: #ff0000;
-        --font: "Itim", "Helvetica Neue", sans-serif;
-        --font-size-header: 2rem;
-        --font-size-normal: 1rem;
         --input-background-color: white;
         --input-foreground-color: black;
-        --margin: 0.5rem;
-        --padding: 0.5rem;
         --primary-color: #713e71;
         --text-color: black;
         --text-color-inverse: white;
@@ -26,18 +29,10 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #713e71;
-        --border-radius: 0.5rem;
         --button-background-color: #ffd6f3;
         --button-foreground-color: black;
-        --button-padding: 0.3rem 0.5rem;
-        --error-color: #ff0000;
-        --font: "Itim", "Helvetica Neue", sans-serif;
-        --font-size-header: 2rem;
-        --font-size-normal: 1rem;
         --input-background-color: black;
         --input-foreground-color: white;
-        --margin: 0.5rem;
-        --padding: 0.5rem;
         --primary-color: #ffd6f3;
         --text-color: white;
         --text-color-inverse: black;
