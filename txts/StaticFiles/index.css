@@ -162,7 +162,7 @@ td {
 }
 
 .message-icon {
-    color: white;
+    color: var(--text-color-inverse);
     font-size: 1rem;
     position: relative;
 }
