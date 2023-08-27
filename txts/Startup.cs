@@ -2,7 +2,9 @@
 using System.Threading.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Core;
 using txts.Database;
+using txts.Logging;
 using txts.Types.Interfaces;
 
 namespace txts;
@@ -28,6 +30,10 @@ public class Startup : IWebHostStartup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddRazorPages();
+
+        services.AddHttpContextAccessor();
+        services.AddTransient<ILogEventEnricher, HttpContextLogEnricher>();
+
         services.AddRateLimiter(options =>
         {
             options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
@@ -47,6 +53,7 @@ public class Startup : IWebHostStartup
                 await Task.CompletedTask;
             };
         });
+
         services.AddDbContext<DatabaseContext>(options =>
         {
             options.UseSqlite("Data Source=txts.db");
