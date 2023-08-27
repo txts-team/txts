@@ -33,7 +33,7 @@
         <form method="POST" action="/">
             @Html.AntiForgeryToken()
 
-            <input name="username" id="username" placeholder="Desired username (i.e. koko, janluna, etc.)"/>
+            <input name="username" id="username" autocomplete="off" placeholder="Desired username (i.e. koko, janluna, etc.)"/>
             <textarea name="content" id="content" placeholder="Markdown-formatted content..."></textarea>
 
             <button type="submit">Submit</button>
