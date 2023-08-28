@@ -38,8 +38,12 @@ public class AdminPage : PageLayout
         return this.Page();
     }
 
+    // ReSharper disable once CognitiveComplexity
     public async Task<IActionResult> OnPost([FromForm] string action, [FromForm] int id)
     {
+        AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
+        if (adminUser == null) return this.BadRequest();
+        
         switch (action)
         {
             case "ban":
