@@ -2,6 +2,10 @@
 
 *A faithful recreation of the txti.es service in ASP.NET*
 
+[![Code Analysis](https://github.com/txts-team/txts/actions/workflows/qodana.yml/badge.svg)](https://github.com/txts-team/txts/actions/workflows/qodana.yml)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/txts-team/txts)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/txts-team/txts)
+
 ## What is Txts?
 
 Txts allows users to create markdown-based simple web pages. Most of the world still does not have internet, but many
