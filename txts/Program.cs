@@ -6,11 +6,11 @@ public static class Program
 {
     public static async Task Main(string[] args)
     {
-        Log.Logger = new LoggerConfiguration().WriteTo
-            .Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [Core] {Message:lj}{NewLine}{Exception}")
-            .CreateLogger();
+        #region Startup tasks
 
         await StartupTasks.MigrateDatabase();
+
+        #endregion
 
         await CreateHostBuilder(args).Build().RunAsync();
     }
@@ -20,7 +20,7 @@ public static class Program
         {
             loggerConfiguration.ReadFrom.Services(serviceProvider);
             loggerConfiguration.WriteTo.Console(
-                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [ASP.NET] [{TraceId}] <{Stack}> {Message:lj}{NewLine}{Exception}");
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [ASP.NET] [{Stack}] <{TraceId}> {Message:lj}{NewLine}{Exception}");
         })
         .ConfigureWebHostDefaults(webBuilder =>
         {

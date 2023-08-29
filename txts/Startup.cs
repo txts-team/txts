@@ -32,7 +32,7 @@ public class Startup : IWebHostStartup
         services.AddRazorPages();
 
         services.AddHttpContextAccessor();
-        services.AddTransient<ILogEventEnricher, HttpContextLogEnricher>();
+        services.AddTransient<ILogEventEnricher, AspNetLogEnricher>();
 
         services.AddRateLimiter(options =>
         {
@@ -63,13 +63,17 @@ public class Startup : IWebHostStartup
 
 public static class StartupTasks
 {
+    private static readonly Logger startupLogger = new LoggerConfiguration().WriteTo
+        .Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [Startup] {Message:lj}{NewLine}{Exception}")
+        .CreateLogger();
+    
     public static async Task MigrateDatabase()
     {
         await using DatabaseContext database = new(new DbContextOptionsBuilder<DatabaseContext>()
             .UseSqlite("Data Source=txts.db")
             .Options);
 
-        Log.Information("Beginning migration of database {Database}", database.Database.GetDbConnection().Database);
+        startupLogger.Information("Beginning migration of database {Database}", database.Database.GetDbConnection().Database);
 
         Stopwatch migrationStopwatch = Stopwatch.StartNew();
 
@@ -89,7 +93,7 @@ public static class StartupTasks
 
         migrationStopwatch.Stop();
 
-        Log.Information("Successfully migrated database {Database} in {Time}ms", database.Database.GetDbConnection().Database,
+        startupLogger.Information("Successfully migrated database {Database} in {Time}ms", database.Database.GetDbConnection().Database,
             migrationStopwatch.ElapsedMilliseconds);
 
         await database.DisposeAsync(); // dispose of the migration context
