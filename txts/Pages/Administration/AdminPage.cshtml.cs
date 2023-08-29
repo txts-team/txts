@@ -42,7 +42,7 @@ public class AdminPage : PageLayout
     public async Task<IActionResult> OnPost([FromForm] string action, [FromForm] int id)
     {
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
-        if (adminUser == null) return this.BadRequest();
+        if (adminUser == null) return this.Unauthorized();
         
         switch (action)
         {
