@@ -1,4 +1,5 @@
 using Serilog;
+using txts.Logging;
 
 namespace txts;
 
@@ -20,7 +21,7 @@ public static class Program
         {
             loggerConfiguration.ReadFrom.Services(serviceProvider);
             loggerConfiguration.WriteTo.Console(
-                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [ASP.NET] [{TraceId}] {Message:lj}{NewLine}{Exception}");
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [ASP.NET] [{TraceId}] <{Stack}> {Message:lj}{NewLine}{Exception}");
         })
         .ConfigureWebHostDefaults(webBuilder =>
         {
