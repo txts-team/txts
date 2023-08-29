@@ -1,5 +1,4 @@
 using Serilog;
-using txts.Logging;
 
 namespace txts;
 
