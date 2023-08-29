@@ -12,12 +12,12 @@ public class AspNetLogEnricher : ILogEventEnricher
     {
         this.contextAccessor = contextAccessor;
     }
-    
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
     {
         #region Trace identifier stuff
 
-        string? traceIdentifier = contextAccessor.HttpContext?.TraceIdentifier;
+        string? traceIdentifier = this.contextAccessor.HttpContext?.TraceIdentifier;
 
         #endregion
         
