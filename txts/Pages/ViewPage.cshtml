@@ -46,10 +46,7 @@
         <a href="/@@@Model.PageData.Username/edit">(edit)</a>
     </div>
 }
-else
+else if (Model.BanData != null)
 {
-    if (Model.BanData != null)
-    {
-        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("This page has been banned.", Model.BanData.Reason))
-    }
+    @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateError("This page has been banned", Model.BanData.Reason))
 }
