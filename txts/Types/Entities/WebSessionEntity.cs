@@ -14,4 +14,6 @@ public class WebSessionEntity
     public AdminUserEntity AdminUser { get; set; } = null!;
 
     public string Token { get; set; } = "";
+
+    public DateTime ExpiresAt { get; init; }
 }

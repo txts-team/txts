@@ -9,9 +9,14 @@ public partial class DatabaseContext
     {
         WebSessionEntity? webSession = this.WebSessions.FirstOrDefault(s => s.Token == sessionToken);
 
-        return webSession == null
-            ? null
-            : await this.AdminUsers.FirstOrDefaultAsync(u => u.UserId == webSession.UserId);
+        if (webSession == null || webSession.ExpiresAt >= DateTime.UtcNow)
+            return webSession == null
+                ? null
+                : await this.AdminUsers.FirstOrDefaultAsync(u => u.UserId == webSession.UserId);
+
+        this.WebSessions.Remove(webSession);
+        await this.SaveChangesAsync();
+        return null;
     }
 
     public async Task<AdminUserEntity?> UserFromWebRequest(HttpRequest request)

@@ -18,8 +18,8 @@
     case "signup":
         @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Admin account created successfully", "You can now log in with your new account."))
         break;
-    case "cleanSessions":
-        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Sessions cleaned up successfully", "You will need to log in again."))
+    case "deleteSessions":
+        @await Html.PartialAsync("Partials/MessagePartial", MessageEntity.CreateSuccess("Sessions deleted successfully", "All sessions have been deleted. You will need to log in again."))
         break;
 }
 

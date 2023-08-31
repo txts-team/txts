@@ -53,6 +53,7 @@ public class AdminLoginPage : PageLayout
         {
             UserId = adminUser.UserId,
             Token = Guid.NewGuid().ToString(),
+            ExpiresAt = DateTime.UtcNow.AddDays(1),
         };
 
         await this.Database.WebSessions.AddAsync(session);

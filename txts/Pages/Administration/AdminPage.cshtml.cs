@@ -47,12 +47,12 @@ public class AdminPage : PageLayout
 
         switch (action)
         {
-            case "cleanSessions":
+            case "deleteSessions":
             {
                 this.Database.WebSessions.RemoveRange(this.Database.WebSessions);
                 await this.Database.SaveChangesAsync();
 
-                return this.Redirect("/admin/login?callback=cleanSessions");
+                return this.Redirect("/admin/login?callback=deleteSessions");
             }
             case "showInstanceInfo": return this.Redirect("/admin?callback=showInstanceInfo");
         }
