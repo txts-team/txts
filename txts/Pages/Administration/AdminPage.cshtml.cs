@@ -43,6 +43,24 @@ public class AdminPage : PageLayout
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Unauthorized();
 
+        #region Instance maintenance
+
+        switch (action)
+        {
+            case "cleanSessions":
+            {
+                this.Database.WebSessions.RemoveRange(this.Database.WebSessions);
+                await this.Database.SaveChangesAsync();
+
+                return this.Redirect("/admin/login?callback=cleanSessions");
+            }
+            case "showInstanceInfo": return this.Redirect("/admin?callback=showInstanceInfo");
+        }
+
+        #endregion
+
+        #region Page maintenance
+
         PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
         if (page == null) return this.NotFound();
         
@@ -87,14 +105,8 @@ public class AdminPage : PageLayout
                 await this.Database.SaveChangesAsync();
                 return this.Redirect("admin?callback=unverify");
             }
-            case "cleanSessions":
-            {
-                this.Database.WebSessions.RemoveRange(this.Database.WebSessions);
-                await this.Database.SaveChangesAsync();
 
-                return this.Redirect("/admin/login?callback=cleanSessions");
-            }
-            case "showInstanceInfo": return this.Redirect("/admin?callback=showInstanceInfo");
+            #endregion
         }
 
         return this.Redirect("/admin?callback=error");

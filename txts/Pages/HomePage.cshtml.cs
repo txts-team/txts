@@ -36,9 +36,7 @@ public partial class HomePage : PageLayout
             return this.Page();
         }
 
-        List<PageEntity> existingPages = await this.Database.Pages.Where(page => page.Username == username).ToListAsync();
-
-        if (existingPages.Count > 0)
+        if (await this.Database.Pages.AnyAsync(p => p.Username == username))
         {
             this.ErrorMessage = "Username is already taken.";
             return this.Page();

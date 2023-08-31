@@ -20,7 +20,7 @@ public class EditPage : PageLayout
     {
         if (string.IsNullOrWhiteSpace(username)) return this.NotFound("/");
 
-        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(page => page.Username == username);
+        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(p => p.Username == username);
 
         if (pageData == null) return this.NotFound();
 
@@ -32,7 +32,7 @@ public class EditPage : PageLayout
 
     public async Task<IActionResult> OnPost([FromRoute] string username, [FromForm] string content, [FromForm] string secret)
     {
-        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(page => page.Username == username);
+        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(p => p.Username == username);
 
         if (pageData == null) return this.NotFound();
 

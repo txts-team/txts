@@ -26,10 +26,10 @@ public class ViewPage : PageLayout
 
         if (string.IsNullOrWhiteSpace(username)) return this.NotFound();
 
-        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(page => page.Username == username);
+        PageEntity? pageData = await this.Database.Pages.FirstOrDefaultAsync(p => p.Username == username);
         if (pageData == null) return this.NotFound();
 
-        BanEntity? banData = await this.Database.Bans.FirstOrDefaultAsync(ban => ban.PageId == pageData.PageId);
+        BanEntity? banData = await this.Database.Bans.FirstOrDefaultAsync(b => b.PageId == pageData.PageId);
 
         this.PageData = pageData;
         this.PageData.Contents = sanitizer.Sanitize(markdown.Transform(pageData.Contents));
