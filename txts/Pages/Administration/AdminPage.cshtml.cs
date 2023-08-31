@@ -38,20 +38,18 @@ public class AdminPage : PageLayout
         return this.Page();
     }
 
-    // ReSharper disable once CognitiveComplexity
     public async Task<IActionResult> OnPost([FromForm] string action, [FromForm] int id)
     {
         AdminUserEntity? adminUser = await this.Database.UserFromWebRequest(this.Request);
         if (adminUser == null) return this.Unauthorized();
+
+        PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
+        if (page == null) return this.NotFound();
         
         switch (action)
         {
             case "ban":
             {
-                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
-
-                if (page == null) return this.NotFound();
-
                 BanEntity ban = new()
                 {
                     PageId = page.PageId,
@@ -66,10 +64,8 @@ public class AdminPage : PageLayout
             }
             case "unban":
             {
-                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
                 BanEntity? ban = await this.Database.Bans.FirstOrDefaultAsync(b => b.PageId == id);
-
-                if (page == null || ban == null) return this.NotFound();
+                if (ban == null) return this.NotFound();
 
                 page.IsBanned = false;
                 this.Database.Bans.Remove(ban);
@@ -79,10 +75,6 @@ public class AdminPage : PageLayout
             }
             case "verify":
             {
-                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
-
-                if (page == null) return this.NotFound();
-
                 page.IsVerified = true;
 
                 await this.Database.SaveChangesAsync();
@@ -90,10 +82,6 @@ public class AdminPage : PageLayout
             }
             case "unverify":
             {
-                PageEntity? page = await this.Database.Pages.FirstOrDefaultAsync(p => p.PageId == id);
-
-                if (page == null) return this.NotFound();
-
                 page.IsVerified = false;
 
                 await this.Database.SaveChangesAsync();
