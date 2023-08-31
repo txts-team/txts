@@ -105,9 +105,9 @@ public class AdminPage : PageLayout
                 await this.Database.SaveChangesAsync();
                 return this.Redirect("admin?callback=unverify");
             }
-
-            #endregion
         }
+
+        #endregion
 
         return this.Redirect("/admin?callback=error");
     }
