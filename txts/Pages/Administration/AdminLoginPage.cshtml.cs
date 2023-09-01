@@ -59,7 +59,7 @@ public class AdminLoginPage : PageLayout
         await this.Database.WebSessions.AddAsync(session);
         await this.Database.SaveChangesAsync();
 
-        this.Response.Cookies.Append("token", session.Token);
+        this.Response.Cookies.Append("token", session.Token, new CookieOptions { Expires = session.ExpiresAt });
 
         return this.Redirect("/admin");
     }
