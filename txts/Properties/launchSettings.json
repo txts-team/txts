@@ -4,7 +4,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "http://*:8001"
+      "applicationUrl": "http://*:7001"
     }
   }
 }
