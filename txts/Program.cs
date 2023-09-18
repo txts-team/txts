@@ -1,4 +1,5 @@
 using Serilog;
+using Serilog.Events;
 
 namespace txts;
 
@@ -19,6 +20,7 @@ public static class Program
         .UseSerilog((_, serviceProvider, loggerConfiguration) =>
         {
             loggerConfiguration.ReadFrom.Services(serviceProvider);
+            loggerConfiguration.MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning);
             loggerConfiguration.WriteTo.Console(
                 outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [ASP.NET] [{Stack}] <{TraceId}> {Message:lj}{NewLine}{Exception}");
         })
